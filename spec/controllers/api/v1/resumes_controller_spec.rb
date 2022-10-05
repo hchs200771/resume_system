@@ -22,7 +22,7 @@ RSpec.describe Api::V1::ResumesController, type: :request do
 
     subject do
       get api_v1_resumes_search_path, params: requrest_params
-      { data: JSON.parse(response.body)["data"].map(&:deep_symbolize_keys) }
+      JSON.parse(response.body, symbolize_names: true)
     end
 
     context "resumes in the same company for 6 years" do
