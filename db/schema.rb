@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_014616) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_05_014515) do
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -19,18 +19,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_014616) do
 
   create_table "resumes", force: :cascade do |t|
     t.string "name"
+    t.string "template"
     t.integer "candidate_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_resumes_on_candidate_id"
-  end
-
-  create_table "templates", force: :cascade do |t|
-    t.string "title"
-    t.integer "resume_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["resume_id"], name: "index_templates_on_resume_id"
   end
 
   create_table "work_experiences", force: :cascade do |t|
@@ -43,6 +36,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_014616) do
   end
 
   add_foreign_key "resumes", "candidates"
-  add_foreign_key "templates", "resumes"
   add_foreign_key "work_experiences", "candidates"
 end
